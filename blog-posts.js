@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {BlogPosts} = require('../models');
+const {BlogPosts} = require('./models');
 
 function lorem() {
   return 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ' +
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', jsonParser, (req, res) => {
-  const requiredFields = ['title', 'content', 'author', 'publishDate'];
+  const requiredFields = ['title', 'content', 'author'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
     if(!(field in req.body)) {

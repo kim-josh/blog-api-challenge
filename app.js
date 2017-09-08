@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const blogPostsRouter = require('./routes/blog-posts');
+const blogPostsRouter = require('./blog-posts');
 const app = express();
 
 // logs the HTTP layer
@@ -13,7 +13,6 @@ app.get('/', (req, res) => {
 
 app.use('/blog-posts', blogPostsRouter);
 
-/*
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -31,8 +30,38 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-*/
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
-});
+let server;
+
+function runServer() {
+  const port = process.env.PORT || 8080;
+  return new Promise((resolve, reject) => {
+    server = app.listen(port, () => {
+      console.log(`Your app is running on port${port}`);
+      resolve(server);
+    }).on('error', err => {
+      reject(err);
+    });
+  });
+}
+
+function closeServer() {
+  return new Promise((resolve, reject) => {
+    console.log('Closing the server');
+    server.close(err => {
+      if(err) {
+        reject(err);
+        // To ensure that we don't also call resolve()
+        return;
+      }
+      resolve();
+    });
+  });
+}
+
+// this checks to see if the module was run directly in the CL as in node xxx.js
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+};
+
+module.exports = {app, runServer, closeServer};
