@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: T00bvCBFTlQr4xotToZkniWcTJoLLThLHl7e+nFg5Sj8Z/8B5iKczI+kJ7XJ/IgKWvsaZJVQ8+at1KjnOOSxbT1XDboV+LXVmxXojNv7kYh8MlrqTYUWLfRASI7NCLnkeEBsfMm8MaLDJsOCEAWQB6ZBz1GmjiqhUIAaC1rXQmxlLT8AmakVRM1nE2q3Z7L07WTwsli0X5uUhMDagH51U61IPbVF9cGpKRkiQUKoqg8VSQNJzZJDZ4ndWhZF35m1RPEMDd2obmHcxt3TbcCOHQD5PifnuXq/TQGtAQXe9f0nLUyKtlp5AENG903IhV/nm7tiPA1ZxrupZLCLJ8QQoCeeHeDODWg20BrDQ+iFVjlvHHZL7Rg60AZRw3p8kke4JOoXAUqRjVJzjJm4LZ7vgMnJKkOzZeWRlFgVxWS8FMuXmvexhbZf+luPtj6p5i+VbWITgtTHjJjuUYwDlwaDdqi0lCo/Ewfc1vvvTT8QrgF9iBuFeM/N9QFyHVsZnoVYU8GHrzmkvl0yHSOuubDdUnvoZ25kNkjLZ1jPDbrCjbIiThP4dtwp5t4v0nFDXP/I1w9AssgtUOX5g6Gj+uFoYg1hEV4mw5RBi33i2TXNt+HUHwvK/P7ZJrnnxxJmp9SMDacyNdW5MtNe51hFavBiVAgbqgNHh4lG2WDRJjsq+U8=
+  app: https://nameless-retreat-53782.herokuapp.com/
+  on:
+    repo: kim-josh/blog-api-challenge
