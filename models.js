@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const blogPostSchema = mongoose.Schema({
   title: {type: String, required: true},
+  content: {type: String},
   author: {
     firstName: String,
     lastName: String
   },
-  content: {type: String},
   created: {type: Date, default: Date.now}
 });
 
@@ -20,11 +20,11 @@ blogPostSchema.methods.apiRepr = function() {
   return {
     id: this._id,
     title: this.title,
-    author: this.authorName,
     content: this.content,
+    author: this.authorName,
     created: this.created
   };
 };
 
-const BlogPost = mongoose.model('Blog Post', blogPostSchema);
+const BlogPost = mongoose.model('BlogPost', blogPostSchema);
 module.exports = {BlogPost};
